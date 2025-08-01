@@ -5,4 +5,5 @@ from PyQt6.QtGui import QPixmap, QFont, QFontDatabase, QPainter, QColor,QPen
 
 height = 820
 width = 390
+round_corners = 25
 path = "study_store/"

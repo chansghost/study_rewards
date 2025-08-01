@@ -12,11 +12,11 @@ class RectangleWidget(QWidget):
 
     def paintEvent(self, event):
         painter = QPainter(self)
-        pen = QPen(QColor("red"))
-        pen.setWidth(3)
+        pen = QPen(QColor("white"))
+        pen.setWidth(0)
         painter.setPen(pen)
 
         for rect in self.rectangles:
             x, y, w, h, color = rect
             painter.setBrush(color)
-            painter.drawRect(x, y, w, h)
+            painter.drawRoundedRect(x, y, w, h, round_corners, round_corners)

@@ -1,6 +1,8 @@
 from imports_consts import *
 from rect import RectangleWidget
 
+
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -23,18 +25,25 @@ class MainWindow(QMainWindow):
         self.header.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.label=QLabel("study store")
-        self.label.setFixedHeight(50)
+        self.label.setFixedHeight(60)
         self.label.setStyleSheet("color: #494949; font-size: 52px")
         self.label.setAlignment(Qt.AlignmentFlag.AlignHCenter)
         #self.label.setFont(QFont(fonts[0],80))
         layout.addWidget(self.label)
+
       #  painter.drawRect(50,50,50,50)
-        self.canvas = RectangleWidget()
-        layout.addWidget(self.canvas)
-        #layout.addWidget(self.header)
+
+        layout.addWidget(self.header)
+        # self.canvas = RectangleWidget()
+        # center = Qt.AlignmentFlag.AlignHCenter
+        # print(center)
+        # print(type(center))
+        # self.canvas.draw_rectangle(10, 0, 325, 60, QColor("white"))
+        # #self.canvas.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+        # layout.addWidget(self.canvas)
+
         window = QWidget()
         window.setLayout(layout)
-        self.canvas.draw_rectangle(50, 50, 100, 60)
         self.setCentralWidget(window)
 
 
