@@ -1,0 +1,11 @@
+QMainWindow { 
+    background-image: url('study_store/background.png'); 
+    background-repeat: no-repeat; 
+    background-position: center; 
+}
+#study_store {
+    color: #494949; 
+    font-size: 52px;
+    background-color: rgba(217, 217, 217, 0.15);
+    border-radius: 26%;
+}

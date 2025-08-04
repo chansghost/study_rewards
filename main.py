@@ -9,7 +9,7 @@ class MainWindow(QMainWindow):
         
         self.setWindowTitle("apka")
         self.setFixedSize(QSize(width,height))
-        self.setStyleSheet("QMainWindow { background-image: url('study_store/background.png'); background-repeat: no-repeat; background-position: center; }")
+        #self.setStyleSheet("QMainWindow { background-image: url('study_store/background.png'); background-repeat: no-repeat; background-position: center; }")
         
         self.study_store()
 
@@ -18,29 +18,21 @@ class MainWindow(QMainWindow):
         layout = QGridLayout()
         layout.setContentsMargins(25,50,25,50)
         layout.setSpacing(150)
-        #self.label = QLabel("<h1>study store</h1>",alignment=Qt.AlignmentFlag.AlignHCenter)
-        self.header=QLabel()
-        self.image=QPixmap(path+"rewards.png")#later, instead of an image, there will be text to improve quality
-        self.header.setPixmap(self.image)
-        self.header.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        # self.header=QLabel()
+        
+        # self.header.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.label=QLabel("study store")
         self.label.setFixedHeight(60)
-        self.label.setStyleSheet("color: #494949; font-size: 52px")
-        self.label.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+        self.label.setObjectName("study_store")
+        self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         #self.label.setFont(QFont(fonts[0],80))
-        layout.addWidget(self.label)
+        layout.addWidget(self.label, 0, 0, 1, -1, Qt.AlignmentFlag.AlignTop)
+        # 0, 0 -> 1 wiersz i kolumna gridlayout
+        # 1, -1 -> 1 wiersz wysokosci, a -1 sprawia ze ignorujemy kolumny tak jakby i rozciagamy na wws
+       # layout.addWidget(self.header)
 
-      #  painter.drawRect(50,50,50,50)
-
-        layout.addWidget(self.header)
-        # self.canvas = RectangleWidget()
-        # center = Qt.AlignmentFlag.AlignHCenter
-        # print(center)
-        # print(type(center))
-        # self.canvas.draw_rectangle(10, 0, 325, 60, QColor("white"))
-        # #self.canvas.setAlignment(Qt.AlignmentFlag.AlignHCenter)
-        # layout.addWidget(self.canvas)
 
         window = QWidget()
         window.setLayout(layout)
@@ -56,6 +48,8 @@ else:
     print("Nie udało się załadować czcionki Judson.")
 
 window = MainWindow()
+with open("styles.css", "r") as file:
+    app.setStyleSheet(file.read())
 
 window.show()
 
