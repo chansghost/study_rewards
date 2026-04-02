@@ -16,8 +16,11 @@ def convert_time(secs):
     return minsec
 
 class MainWindow(QMainWindow):
+    timer_signal=pyqtSignal(int) #it needs to be outside the constructor,
+    #as it would not be recognised as a signal otherwise, but an ordinary variable
     def __init__(self):
         super().__init__()
+        
         self.setWindowTitle("App")
         self.setFixedSize(width, height)
         self.stacked_widget = QStackedWidget()
@@ -29,6 +32,7 @@ class MainWindow(QMainWindow):
         self.stacked_widget.addWidget(self.home_page)#index 0
         self.stacked_widget.addWidget(self.timer_page)
 
+        self.balanceLabel=QLabel(f'Coins:')
         
         self.show()
 
@@ -42,6 +46,8 @@ class MainWindow(QMainWindow):
         widget.setLayout(layout)
         return widget
 
+    def update_balance(self, balance):
+        self.balanceLabel.setText(f'Coins: {balance}')
 
     def timer_ui(self):
         widget=QWidget()
@@ -101,6 +107,7 @@ class MainWindow(QMainWindow):
         if self.time_left<=0:
             self.time_left=duration
             self.myTimer.stop()
+            self.timer_signal.emit(self.duration)#sending signal about a finished pomodoro
         
 
     def update_timer(self, new=0):
@@ -116,7 +123,8 @@ class MainWindow(QMainWindow):
 
 if __name__ in "__main__":
     app=QApplication([])
-
+    system = System()
+    user = User()
     window = MainWindow()
 
     window.show()
