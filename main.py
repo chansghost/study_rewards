@@ -5,7 +5,7 @@ DEFAULT_TIME=25
 #time buttons are formatted for easy editing, using minutes, and then
 #the program converts them into seconds. if changing value, always put it in
 #MINUTES
-TIME_BUTTON1=1
+TIME_BUTTON1=25
 TIME_BUTTON2=40
 TIME_BUTTON3=60
 
