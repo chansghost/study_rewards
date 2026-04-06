@@ -132,7 +132,7 @@ class MainWindow(QMainWindow):
 if __name__ in "__main__":
     app=QApplication([])
     system = System()
-    user = User()
+    user = User("Juls")
     window = MainWindow()
 
     app_controller = AppController(system, user,window)
