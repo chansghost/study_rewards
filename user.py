@@ -13,7 +13,6 @@ class User:
     
     def add_coins(self, amount):
         self.balance+=amount
-    
-    def get_balance(self):
-        return self.balance
+        print(f"added {amount} coins to the account")
+
     

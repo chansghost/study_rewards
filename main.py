@@ -5,7 +5,7 @@ DEFAULT_TIME=25
 #time buttons are formatted for easy editing, using minutes, and then
 #the program converts them into seconds. if changing value, always put it in
 #MINUTES
-TIME_BUTTON1=25
+TIME_BUTTON1=1
 TIME_BUTTON2=40
 TIME_BUTTON3=60
 
@@ -18,28 +18,37 @@ def convert_time(secs):
 class MainWindow(QMainWindow):
     timer_signal=pyqtSignal(int) #it needs to be outside the constructor,
     #as it would not be recognised as a signal otherwise, but an ordinary variable
+    
     def __init__(self):
         super().__init__()
-        
         self.setWindowTitle("App")
         self.setFixedSize(width, height)
-        self.stacked_widget = QStackedWidget()
 
-        self.setCentralWidget(self.stacked_widget)
+        main_container = QWidget()
+        self.setCentralWidget(main_container)
+        main_layout = QVBoxLayout(main_container)
+        
+        self.balanceLabel=QLabel(f'Coins:')
+        self.stacked_widget = QStackedWidget()
+        
+        
+        main_layout.addWidget(self.balanceLabel)
+        main_layout.addWidget(self.stacked_widget)
+        
+        
         self.home_page=self.home_ui()
         self.timer_page=self.timer_ui()
 
         self.stacked_widget.addWidget(self.home_page)#index 0
         self.stacked_widget.addWidget(self.timer_page)
 
-        self.balanceLabel=QLabel(f'Coins:')
         
         self.show()
 
     def home_ui(self):
         widget = QWidget()
         layout = QVBoxLayout()
-
+        
         timer_button=QPushButton("Timer")
         timer_button.clicked.connect(lambda: self.stacked_widget.setCurrentIndex(1))
         layout.addWidget(timer_button)
@@ -76,7 +85,6 @@ class MainWindow(QMainWindow):
         
         start_button.clicked.connect(lambda: self.start_timer(self.duration))
         
-
 
         layout.addWidget(back_button)
         layout.addWidget(start_button)
@@ -126,6 +134,8 @@ if __name__ in "__main__":
     system = System()
     user = User()
     window = MainWindow()
+
+    app_controller = AppController(system, user,window)
 
     window.show()
 
